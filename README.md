@@ -1,5 +1,6 @@
-
 # Easily embed lua into applications managed with CMake
+
+This is a fork with an edit of the CMakeList.txt to compile lua as c++.
 
 Due to its simplicity and portability, [Lua](https://www.lua.org) became a popular choice for
 extending applications through a scripting language. The interpreter is available on most platforms,
@@ -15,7 +16,7 @@ repository offers two simple facilities.
 - A git clone of the upstream [sources](https://github.com/lua/lua) is configured as a submodule,
   such that recursive initialization of this repository pulls them in.
 
-The Lua version pulled in is the current v5.4.1. The library is built as C (not C++, which is
+The Lua version pulled in is the current v5.4.1. The library is built as C++ (not C, which is the default
 possible), with default upstream compiler flags. Whether a shared or static library is built depends
 on `cmake`'s
 [`BUILD_SHARED_LIBS`](https://cmake.org/cmake/help/latest/variable/BUILD_SHARED_LIBS.html) flag. No
@@ -37,4 +38,10 @@ add_subdirectory(external/lua)
 target_link_libraries(yourTarget PRIVATE lua::lib)
 ```
 That's it. Further integration with a library to facilitate the bindings (e.g.
-[sol2](https://github.com/ThePhD/sol2)) is straightfoward.
+[sol2](https://github.com/ThePhD/sol2)) is straightfoward. To use sol with lua compiled as c++ you need to include ´sol´ the folowing way:
+
+´´´cpp
+#define SOL_ALL_SAFETIES_ON 1
+#define SOL_USING_CXX_LUA 1
+#include <sol/sol.hpp>
+´´´
