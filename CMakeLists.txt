@@ -1,6 +1,8 @@
-
 cmake_minimum_required(VERSION 3.12)
-project(lua-cmake VERSION 1.0.0 DESCRIPTION "Lua build for a project subdirectory" LANGUAGES C)
+project(lua-cmake VERSION 1.0.0 DESCRIPTION "Lua build for a project subdirectory" LANGUAGES CXX)
+
+set(WARNING_FLAGS "-Wno-deprecated")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${WARNING_FLAGS}")
 
 option(BUILD_SHARED_LIBS "Build as shared library" ON)
 
@@ -15,6 +17,8 @@ set(publicHeaderFiles lauxlib.h lua.h luaconf.h lualib.h)
 
 list(TRANSFORM srcFiles PREPEND ${srcDir}/)
 list(TRANSFORM publicHeaderFiles PREPEND ${srcDir}/)
+
+set_source_files_properties(${srcFiles} PROPERTIES LANGUAGE CXX)
 
 add_library(lua
     ${srcFiles})
@@ -42,7 +46,7 @@ target_include_directories(lua-header
 
 target_link_libraries(lua
     INTERFACE
-    lua-header)
+    lua-header ${CMAKE_DL_LIBS})
 
 add_library(lua::lib ALIAS lua)
 add_library(lua::header ALIAS lua-header)
