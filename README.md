@@ -1,6 +1,6 @@
 # Easily embed lua into applications managed with CMake
 
-This is a fork with an edit of the CMakeList.txt to compile lua as c++.
+This is a [fork][https://github.com/lubgr/lua-cmake] with an edit of the CMakeList.txt to compile lua as c++.
 
 Due to its simplicity and portability, [Lua](https://www.lua.org) became a popular choice for
 extending applications through a scripting language. The interpreter is available on most platforms,
