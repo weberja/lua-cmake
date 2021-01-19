@@ -38,10 +38,10 @@ add_subdirectory(external/lua)
 target_link_libraries(yourTarget PRIVATE lua::lib)
 ```
 That's it. Further integration with a library to facilitate the bindings (e.g.
-[sol2](https://github.com/ThePhD/sol2)) is straightfoward. To use sol with lua compiled as c++ you need to include ´sol´ the folowing way:
+[sol2](https://github.com/ThePhD/sol2)) is straightfoward. To use sol with lua compiled as c++ you need to include `sol` the folowing way:
 
-´´´cpp
+```cpp
 #define SOL_ALL_SAFETIES_ON 1
 #define SOL_USING_CXX_LUA 1
 #include <sol/sol.hpp>
-´´´
+```
